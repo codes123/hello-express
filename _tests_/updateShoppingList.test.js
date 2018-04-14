@@ -2,22 +2,27 @@
 const fs = require('fs');
 const path = require('path');
 const httpMocks = require('node-mocks-http');
-const createShoppingList = require('../controllers/createShoppingList');
+const updateShoppingList = require('../controllers/updateShoppingLists');
 
-it('creates a new shopping list', (done) => {
+it('updates an existing shopping list', (done) => {
   expect.assertions(1);
 
   const request = httpMocks.createRequest({
-    method: 'POST',
-    url: '/shopping-lists',
-    body: {
-      items: ['broccoli', 'bread', 'bananas'],
+    method: 'PUT',
+    url: '/shopping-lists/:filename',
+    params: {
+      filename: filename 
     },
-  });
+    body: body, 
+    items: ['carrots', 'crunchies', 'cornflakes'],
+  },
+});
+
   const response = httpMocks.createResponse({
     eventEmitter: require('events').EventEmitter,
   });
-  createShoppingList(request, response);
+
+  updateShoppingList(request, response);
 
   response.on('end', () => {
     const filename = response._getData().filename;
