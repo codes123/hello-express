@@ -6,10 +6,10 @@ const updateShoppingList = require('../controllers/updateShoppingList');
 
 
 it('updates an existing shopping list', (done) => {
-  expect.assertions(1);  
-  const filename = Date.now().toString(); 
+  expect.assertions(1);
+  const filename = Date.now().toString();
   const body = {
-    items: ['carrots', 'crunchies', 'cornflakes']
+    items: ['carrots', 'crunchies', 'cornflakes'],
   };
   const request = httpMocks.createRequest({
     method: 'PUT',
@@ -17,7 +17,7 @@ it('updates an existing shopping list', (done) => {
     params: {
       filename,
     },
-    body, 
+    body,
   });
 
   const response = httpMocks.createResponse({
